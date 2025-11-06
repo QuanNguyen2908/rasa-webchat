@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Botfront - Web Chat</title>
-        <script>
+        <!-- <script>
             const load = () => {
                 if (!WebChat) setTimeout(load, 100);
                 if (WebChat)
@@ -16,9 +16,37 @@
                         showFullScreenButton: true,
                         displayUnreadCount: true,
                         showMessageDate: true,
+                        // embedded: true,
                     });
             };
             setTimeout(load, 200);
+        </script> -->
+
+        <script>
+            !(function() {
+                let e = document.createElement('script'),
+                    t = document.head || document.getElementsByTagName('head')[0];
+                (e.src = 'https://cdn.jsdelivr.net/gh/QuanNguyen2908/talkinghead@dev/chatbot.js'),
+                    // Replace 1.x.x with the version that you want
+                    (e.async = !0),
+                    (e.onload = () => {
+                        window.WebChat.default(
+                            {
+                                customData: { language: 'en' },
+                                socketUrl: 'https://chatbot-socket-server.onrender.com',
+                                withRules: true,
+                                title: 'Test chatbot',
+                                subtitle: 'test subtitle',
+                                inputTextFieldHint: 'Enter the message',
+                                showFullScreenButton: true,
+                                displayUnreadCount: true,
+                                showMessageDate: true,
+                            },
+                            null
+                        );
+                    }),
+                    t.insertBefore(e, t.firstChild);
+            })();
         </script>
     </head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />

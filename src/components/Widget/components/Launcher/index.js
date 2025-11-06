@@ -152,11 +152,11 @@ const Launcher = ({
             /* stop the propagation because the popup is also a button
             otherwise it would open the webchat when closing the tooltip */
             e.stopPropagation();
-            
+
             const payload = domHighlight.get('tooltipClose')
               if(domHighlight && payload){
                 sendPayload(`/${payload}`)
-              }
+            }
             closeTooltip();
           }}
         >
@@ -196,7 +196,12 @@ const Launcher = ({
   );
 
   const renderOpenLauncherImage = () => (
-    <div className="rw-open-launcher__container">
+    <div
+      className="rw-open-launcher__container" style={{
+        display: 'flex',
+        justifyContent: 'center'
+      }}
+    >
       {unreadCount > 0 && displayUnreadCount && (
         <div className="rw-unread-count-pastille">{unreadCount}</div>
       )}
@@ -268,7 +273,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   closeTooltip: () => dispatch(showTooltipAction(false)),
-  sendPayload: (payload) => dispatch(emitUserMessage(payload))
+  sendPayload: payload => dispatch(emitUserMessage(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Launcher);
